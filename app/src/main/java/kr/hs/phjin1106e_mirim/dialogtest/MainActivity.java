@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    String[] itemArr= {"RYUJEHONG", "EscA", "TOBI", "MIRO", "Zunba", "GIDO", "WHORU"};
+    String[] itemArr= {"Ryujehong", "EscA", "Tobi", "Miro", "Zunba", "GIDO", "Whoru"};
     Button butDialog;
 
     @Override
@@ -34,14 +34,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });*/
 
      // 라디오 버튼 목록
-        dialog.setSingleChoiceItems(itemArr, 0, new DialogInterface.OnClickListener() {
+/*        dialog.setSingleChoiceItems(itemArr, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 butDialog.setText(itemArr[i]);
             }
-        });
+        });*/
 
-        dialog.setPositiveButton("OK",null);
+     // 체크 박스 목록
+     // 선택 영부 배열
+          boolean[] checkedItems = {true, false, true, false, false, true, false};
+          dialog.setMultiChoiceItems(itemArr, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int i, boolean b) {
+                  if(b)
+                  butDialog.setText(itemArr[i]);
+              }
+          });
+
+
+//        dialog.setPositiveButton("OK",null);
         dialog.show();
     }
 }
